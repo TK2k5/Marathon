@@ -2,53 +2,31 @@ import React from "react";
 import { useState } from "react";
 
 export const TodoList = () => {
-  const data = [
-    {
-      id: 1,
-      name: "Nguyễn Văn A",
-      age: 23,
-    },
-
-    {
-      id: 2,
-      name: "Nguyễn Văn B",
-      age: 23,
-    },
-  ];
-
-  const [arrayData, setarrayData] = useState(data);
+  const [value, setvalue] = useState("");
+  const [arrayData, setarrayData] = useState(["Hello", "Hi", "Bye"]);
 
   const handleClick = (id) => {
     const newData = arrayData.filter((value) => {
-      if (id !== value.id) {
+      if (id !== value) {
         return id;
       }
     });
     setarrayData(newData);
   };
 
+  const handleChange = (event) => {
+    console.log("🚀 ~ handleChange ~ event:", event);
+    setvalue(event.target.value);
+  };
+
   const addUser = () => {
-    arrayData;
-    const newUser = {
-      id: 3,
-      name: "Nguyễn Văn C",
-      age: 23,
-    };
-    const newArrayData = [...arrayData, newUser];
+    const newArrayData = [...arrayData, value];
     setarrayData(newArrayData);
   };
 
-  const handleUpdateArray = (id) => {
-    const userInfor = arrayData.find((value, index) => value.id === id);
-    userInfor.name = userInfor.name + " Update";
-
-    const newData = arrayData.map((value, index) => {
-      if (value.id === id) {
-        return userInfor;
-      }
-      return value;
-    });
-    setarrayData(newData);
+  const handleUpdateArray = (values) => {
+    const userInfor = arrayData.find((value, index) => value === values);
+    setvalue(userInfor);
   };
 
   return (
@@ -59,6 +37,8 @@ export const TodoList = () => {
           type="text"
           className="border-solid border-2 border-slate-600  px-2 py-2 w-full"
           placeholder="Add your new todo"
+          value={value}
+          onChange={(event) => handleChange(event)}
         />
         <button
           onClick={() => addUser()}
@@ -73,19 +53,17 @@ export const TodoList = () => {
             key={index}
             className="flex items-center bg-slate-100 rounded px-3 py-1"
           >
-            <p className="grow">
-              {value.name} - {value.age}
-            </p>
+            <p className="grow">{value}</p>
             <div>
               <button
-                onClick={() => handleClick(value.id)}
+                onClick={() => handleClick(value)}
                 className="bg-red-500 py-2 px-4 rounded text-white  "
               >
                 Delete
               </button>
 
               <button
-                onClick={() => handleUpdateArray(value.id)}
+                onClick={() => handleUpdateArray(value)}
                 className="bg-red-500 py-2 px-4 rounded text-white ml-2 "
               >
                 Sửa
