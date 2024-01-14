@@ -15,7 +15,6 @@ export const TodoList = () => {
   };
 
   const handleChange = (event) => {
-    console.log("🚀 ~ handleChange ~ event:", event);
     setvalue(event.target.value);
   };
 
