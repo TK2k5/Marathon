@@ -5,7 +5,7 @@ export const TodoList = () => {
   const [value, setvalue] = useState("");
   const [arrayData, setarrayData] = useState(["Hello", "Hi", "Bye"]);
 
-  const handleClick = (id) => {
+  const handleDelete = (id) => {
     const newData = arrayData.filter((value) => {
       if (id !== value) {
         return id;
@@ -24,7 +24,7 @@ export const TodoList = () => {
   };
 
   const handleUpdateArray = (values) => {
-    const userInfor = arrayData.find((value, index) => value === values);
+    const userInfor = arrayData.find((value, index) => values === value);
     setvalue(userInfor);
   };
 
@@ -55,7 +55,7 @@ export const TodoList = () => {
             <p className="grow">{value}</p>
             <div>
               <button
-                onClick={() => handleClick(value)}
+                onClick={() => handleDelete(value)}
                 className="bg-red-500 py-2 px-4 rounded text-white  "
               >
                 Delete
