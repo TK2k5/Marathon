@@ -1,11 +1,15 @@
 import { useState } from "react";
+import Input from "./input";
+import Create from "./create";
+import Update from "./update";
+import Delete from "./delete";
 
 interface product {
   id: number;
   name: string;
   price: number;
 }
-const CrudBuoi4 = () => {
+const Buoi5 = () => {
   const arrayData: product[] = [
     { id: 1, name: "iphone", price: 1000 },
     { id: 2, name: "samsung", price: 1200 },
@@ -81,27 +85,14 @@ const CrudBuoi4 = () => {
 
         <div className="w-full flex items-center gap-4">
           <div className="flex items-center justify-between">
-            <input
-              type="text"
-              className="border border-gray-200 rounded py-2 px-2 w-full  "
-              placeholder="Nhập tên"
-              value={nameProduct}
-              onChange={(event) => handleOnChange(event)}
-            />
-            <input
-              type="number"
-              className="border border-gray-200 rounded py-2 px-2 w-full  "
-              placeholder="Nhập giá"
-              value={priceProduct}
-              onChange={(event) => handlePriceOnChange(event)}
+            <Input
+              Name={nameProduct}
+              Price={priceProduct}
+              handleOnChanged={handleOnChange}
+              handlePriceOnChanged={handlePriceOnChange}
             />
           </div>
-          <button
-            onClick={() => handleAddProduct()}
-            className="bg-blue-500 text-white rounded py-2 px-2"
-          >
-            {isEdit ? "Sửa" : "Thêm"}
-          </button>
+          <Create handleAddProducted={handleAddProduct} isEdited={isEdit} />
         </div>
 
         <div>
@@ -112,18 +103,11 @@ const CrudBuoi4 = () => {
                 <p>{data.price}</p>
               </div>
               <div className="flex items-center gap-3">
-                <button
-                  onClick={() => handleUpdateProduct(data)}
-                  className="bg-blue-500 text-white rounded py-2 px-2"
-                >
-                  Sửa
-                </button>
-                <button
-                  onClick={() => handleDelete(data)}
-                  className="bg-red-500 text-white rounded py-2 px-2"
-                >
-                  Xóa
-                </button>
+                <Update
+                  handleUpdateProducted={handleUpdateProduct}
+                  Data={data}
+                />
+                <Delete handleDeleted={handleDelete} Data={data} />
               </div>
             </div>
           ))}
@@ -133,4 +117,4 @@ const CrudBuoi4 = () => {
   );
 };
 
-export default CrudBuoi4;
+export default Buoi5;

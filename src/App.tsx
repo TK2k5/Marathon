@@ -1,9 +1,9 @@
-import CrudBuoi4 from "./buoi4/crud";
+import Buoi5 from "./components/buoi5/buoi5";
 
 function App() {
   return (
     <div>
-      <CrudBuoi4 />
+      <Buoi5 />
     </div>
   );
 }
