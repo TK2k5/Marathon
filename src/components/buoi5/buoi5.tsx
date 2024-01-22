@@ -9,6 +9,7 @@ interface product {
   name: string;
   price: number;
 }
+
 const Buoi5 = () => {
   const arrayData: product[] = [
     { id: 1, name: "iphone", price: 1000 },

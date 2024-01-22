@@ -1,11 +1,8 @@
-import Buoi5 from "./components/buoi5/buoi5";
+import { RouterProvider } from "react-router-dom";
+import { router } from "./routers";
 
 function App() {
-  return (
-    <div>
-      <Buoi5 />
-    </div>
-  );
+  return <RouterProvider router={router} />;
 }
 
 export default App;
