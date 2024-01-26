@@ -1,84 +1,93 @@
 {
   "products": [
     {
-      "id": 1,
+      "id": "1",
       "name": "Product 1",
       "price": 100
     },
     {
-      "id": 2,
+      "id": "2",
       "name": "Product 2",
       "price": 200
     },
     {
-      "id": 3,
+      "id": "3",
       "name": "Product 3",
       "price": 300
     },
     {
-      "id": 4,
+      "id": "4",
       "name": "Product 4",
       "price": 400
     },
     {
-      "id": 5,
+      "id": "5",
       "name": "Product 5",
       "price": 500
     },
     {
-      "id": 6,
+      "id": "6",
       "name": "Product 6",
       "price": 600
     },
     {
-      "id": 7,
+      "id": "7",
       "name": "Product 7",
       "price": 700
     },
     {
-      "id": 8,
+      "id": "8",
       "name": "Product 8",
       "price": 800
     },
     {
-      "id": 9,
+      "id": "9",
       "name": "Product 9",
       "price": 900
     },
     {
-      "id": 10,
+      "id": "10",
       "name": "Product 10",
       "price": 1000
+    },
+    {
+      "id": "78c7",
+      "name": "123",
+      "price": 123
+    },
+    {
+      "id": "5992",
+      "name": "Trieu",
+      "price": 123
     }
   ],
-
   "user": [
     {
-      "id": 1,
+      "id": "1",
       "username": "Nguyễn Văn A",
       "age": 20,
       "address": "61 Tay Son, Quang Trung, Dong Da"
     },
     {
-      "id": 2,
+      "id": "2",
       "username": "Nguyễn Văn B",
       "age": 18,
       "address": "61 Tay Son, Quang Trung, Dong Da"
     },
     {
-      "id": 3,
+      "id": "3",
       "username": "Nguyễn Văn C",
       "age": 19,
       "address": "61 Tay Son, Quang Trung, Dong Da"
     },
     {
-      "id": 4,
+      "id": "4",
       "username": "Nguyễn Văn D",
       "age": 21,
       "address": "61 Tay Son, Quang Trung, Dong Da"
     },
     {
-      "id": 5,
+      "id": "5",
       "username": "Nguyễn Văn E",
       "age": 22,
       "address": "61 Tay Son, Quang Trung, Dong Da"
