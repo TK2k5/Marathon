@@ -1,33 +1,11 @@
-import { Link } from "react-router-dom";
-
 const Header = () => {
   return (
-    <div className="w-full p-8 flex items-center gap-5  border-b-4 border-black">
+    <div className="w-full p-8 flex flex-row items-center border-b-4 border-black justify-between">
       <img
-        className="h-[100px] w-[100px] flex-none"
+        className="h-[100px] w-[100px]"
         src=".\src\assets\logo.jpg"
         alt="logo"
       />
-      <div className="cursor-pointer flex gap-8 flex-1">
-        <Link
-          className="text-[30px] font-bold border-b-4 border-red-500"
-          to="/users"
-        >
-          Danh sách
-        </Link>
-        <Link
-          className="text-[30px] font-bold border-b-4 border-red-500"
-          to="/adduser"
-        >
-          Thêm người dùng
-        </Link>
-        <Link
-          className="text-[30px] font-bold border-b-4 border-red-500"
-          to="/login"
-        >
-          Đăng nhập
-        </Link>
-      </div>
 
       <div className="flex gap-4 bg-[#F60621] text-white px-6 py-2 rounded-xl cursor-pointer shadow shadow-red-400">
         <svg
