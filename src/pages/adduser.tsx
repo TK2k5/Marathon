@@ -10,27 +10,38 @@ interface IAddUser {
 
 const AddUser = () => {
   const router = useNavigate();
-  const [nameUser, setNameUser] = useState<string>("");
-  const [addressUser, setAddressUser] = useState<string>("");
-  const [ageUser, setAgeUser] = useState<number>(0);
+  const [user, setUser] = useState({
+    name: " ",
+    age: 0,
+    address: " ",
+  });
 
-  const handleChangeName = (event: React.ChangeEvent<HTMLInputElement>) => {
-    setNameUser(event.target.value);
+  const handleNameChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    setUser({
+      ...user,
+      name: (user.name = event.target.value),
+    });
   };
-  const handleChangeAddress = (event: React.ChangeEvent<HTMLInputElement>) => {
-    setAddressUser(event.target.value);
+  const handleAgeChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    setUser({
+      ...user,
+      age: (user.age = event.target.valueAsNumber),
+    });
   };
-  const handleChangeAge = (event: React.ChangeEvent<HTMLInputElement>) => {
-    setAgeUser(event.target.valueAsNumber);
+  const handleAddressChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    setUser({
+      ...user,
+      address: (user.address = event.target.value),
+    });
   };
 
   const handleOnSumit = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
     try {
       const newProduct: Omit<IAddUser, "id"> = {
-        username: nameUser,
-        age: ageUser,
-        address: addressUser,
+        username: user.name,
+        age: user.age,
+        address: user.address,
       };
       const response = await fetch("http://localhost:3000/user", {
         method: "POST",
@@ -57,25 +68,25 @@ const AddUser = () => {
         >
           <h1>Username:</h1>
           <input
-            value={nameUser}
+            value={user.name}
             className="outline-none border border-gray-200 rounded-lg p-3"
             type="text"
-            onChange={(event) => handleChangeName(event)}
+            onChange={(event) => handleNameChange(event)}
           />
           <h1>Age:</h1>
           <input
-            value={ageUser}
+            value={user.age}
             className="outline-none border border-gray-200 rounded-lg p-3"
             type="number"
             placeholder="Age"
-            onChange={(event) => handleChangeAge(event)}
+            onChange={(event) => handleAgeChange(event)}
           />
           <h1>Address:</h1>
           <input
-            value={addressUser}
+            value={user.address}
             className="outline-none border border-gray-200 rounded-lg p-3"
             type="text"
-            onChange={(event) => handleChangeAddress(event)}
+            onChange={(event) => handleAddressChange(event)}
           />
           <button className="text-white font-mono font-bold bg-red-600 rounded-xl p-2 w-[200px] m-auto hover:opacity-50">
             Add User
