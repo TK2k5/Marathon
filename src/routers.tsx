@@ -1,4 +1,5 @@
 import AddUser from "./pages/adduser";
+import EditUser from "./pages/edituser";
 import Login from "./pages/login";
 import PageDefault from "./layouts/pagedefault";
 import Users from "./pages/users";
@@ -18,9 +19,10 @@ export const router = createBrowserRouter([
         element: <AddUser />,
       },
       {
-        path: "/login",
-        element: <Login />,
+        path: "/edituser/:id",
+        element: <EditUser />,
       },
     ],
   },
+  { path: "/login", element: <Login /> },
 ]);

@@ -1,6 +1,5 @@
+import { Link, useNavigate } from "react-router-dom";
 import { useEffect, useState } from "react";
-
-import { useNavigate } from "react-router-dom";
 
 interface IUsers {
   id: number;
@@ -32,6 +31,20 @@ const Users = () => {
     router("/adduser");
   };
 
+  const handleDelete = async (idUser: number) => {
+    try {
+      const response = await fetch(`http://localhost:3000/user/${idUser}`, {
+        method: "DELETE",
+      });
+      const users = await response.json();
+      console.log("🚀 ~ handleDelete ~ users:", users);
+      const newUserList = user.filter((value) => value.id !== idUser);
+      setUser(newUserList);
+    } catch (error) {
+      console.log("🚀 ~ handleDelete ~ error:", error);
+    }
+  };
+
   return (
     <div className="min-h-screen bg-gray-100 flex flex-col justify-center items-center">
       <div className="flex flex-col gap-4 items-center mb-4">
@@ -49,7 +62,8 @@ const Users = () => {
             <tr>
               <th className="px-6 py-3 border border-black">UserName</th>
               <th className="px-6 py-3 border border-black">Age</th>
-              <th className="px-6 py-3 border border-black">Address</th>
+              <th className="px-6 py-3 border border-black ">Address</th>
+              <th className="px-6 py-3 border border-black">Modify</th>
             </tr>
           </thead>
           <tbody>
@@ -76,6 +90,20 @@ const Users = () => {
                     className="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white"
                   >
                     {data.address}
+                  </th>
+                  <th className="flex gap-2">
+                    <button
+                      className="bg-red-500 text-white py-2 px-4 rounded-md mt-2"
+                      onClick={() => handleDelete(data.id)}
+                    >
+                      Delete
+                    </button>
+                    <Link
+                      to={`/edituser/${data.id}`}
+                      className="bg-blue-500 text-white py-2 px-4 rounded-md mt-2"
+                    >
+                      Edit
+                    </Link>
                   </th>
                 </tr>
               );

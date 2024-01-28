@@ -63,34 +63,10 @@
   ],
   "user": [
     {
-      "id": "1",
-      "username": "Nguyễn Văn A",
-      "age": 20,
-      "address": "61 Tay Son, Quang Trung, Dong Da"
-    },
-    {
-      "id": "2",
-      "username": "Nguyễn Văn B",
-      "age": 18,
-      "address": "61 Tay Son, Quang Trung, Dong Da"
-    },
-    {
-      "id": "3",
-      "username": "Nguyễn Văn C",
-      "age": 19,
-      "address": "61 Tay Son, Quang Trung, Dong Da"
-    },
-    {
-      "id": "4",
-      "username": "Nguyễn Văn D",
-      "age": 21,
-      "address": "61 Tay Son, Quang Trung, Dong Da"
-    },
-    {
-      "id": "5",
-      "username": "Nguyễn Văn E",
-      "age": 22,
-      "address": "61 Tay Son, Quang Trung, Dong Da"
+      "username": "Bùi Minh Chiến",
+      "age": 14,
+      "address": "Hàm Liêm, Hàm Thuận Bắc",
+      "id": "ebc4"
     }
   ]
 }
