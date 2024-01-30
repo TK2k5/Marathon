@@ -59,35 +59,56 @@ const AddUser = () => {
   };
 
   return (
-    <div className="h-screen bg-gray-100 flex justify-center items-center">
-      <div className="w-[500px] bg-white p-4 rounded-md flex flex-col gap-4 items-center">
+    <div className="flex items-center">
+      <div className="w-[500px] bg-white p-4 rounded-md flex flex-col gap-4">
         <h1 className="text-xl font-bold">Add New User</h1>
         <form
           onSubmit={(event) => handleOnSumit(event)}
-          className="flex flex-col gap-4 w-full"
+          className="flex flex-col gap-5 w-full"
         >
-          <h1>Username:</h1>
+          <h1 className="text-primarydark font-Inter font-medium">Username:</h1>
           <input
             value={user.name}
             className="outline-none border border-gray-200 rounded-lg p-3"
             type="text"
             onChange={(event) => handleNameChange(event)}
           />
-          <h1>Age:</h1>
+          <h1 className="text-primarydark font-Inter font-medium">Age:</h1>
           <input
             value={user.age}
             className="outline-none border border-gray-200 rounded-lg p-3"
             type="number"
             onChange={(event) => handleAgeChange(event)}
           />
-          <h1>Address:</h1>
+          <h1 className="text-primarydark font-Inter font-medium">Address:</h1>
           <input
             value={user.address}
             className="outline-none border border-gray-200 rounded-lg p-3"
             type="text"
             onChange={(event) => handleAddressChange(event)}
           />
-          <button className="text-white font-mono font-bold bg-red-600 rounded-xl p-2 w-[200px] m-auto hover:opacity-50">
+          <div>
+            <div>
+              <h1 className="text-primarydark font-Inter font-medium">
+                Status:
+              </h1>
+              <div className="flex gap-6 items-center">
+                <label className="flex justify-center gap-2">
+                  <input
+                    type="radio"
+                    className="accent-success w-6 h-6"
+                    defaultChecked
+                  />
+                  Active
+                </label>
+                <label className="flex justify-center gap-2">
+                  <input type="radio" className="accent-success w-6 h-6" />
+                  Inactive
+                </label>
+              </div>
+            </div>
+          </div>
+          <button className="text-white font-Inter font-bold bg-primary rounded-lg p-2 w-[200px] hover:opacity-50">
             Add User
           </button>
         </form>

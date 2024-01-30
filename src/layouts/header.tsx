@@ -1,20 +1,19 @@
+import LogoPage from "../components/icons/LogoPage";
+
 const Header = () => {
   return (
-    <div className="w-full p-8 flex flex-row items-center border-b-4 border-black justify-between">
-      <img
-        className="h-[100px] w-[100px]"
-        src=".\src\assets\logo.jpg"
-        alt="logo"
-      />
-
-      <div className="flex gap-4 bg-[#F60621] text-white px-6 py-2 rounded-xl cursor-pointer shadow shadow-red-400">
+    <div className="w-full py-[15px] px-[50px] flex flex-row items-center border-b-4 border-black justify-between">
+      <div>
+        <LogoPage />
+      </div>
+      <div className="flex gap-4 bg-primary w-[163px] rounded-lg p-[10px] justify-center text-center text-white font-Inter font-semibold text-2xl shadow-red-400">
         <svg
           xmlns="http://www.w3.org/2000/svg"
           fill="none"
           viewBox="0 0 24 24"
           strokeWidth={1.5}
           stroke="currentColor"
-          className="w-6 h-6"
+          className="w-8 h-8"
         >
           <path
             strokeLinecap="round"

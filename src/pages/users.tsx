@@ -1,6 +1,10 @@
 import { Link, useNavigate } from "react-router-dom";
 import { useEffect, useState } from "react";
 
+import Pen from "../components/icons/pen";
+import Plus from "../components/icons/plus";
+import Trash from "../components/icons/trash";
+
 interface IUsers {
   id: number;
   username: string;
@@ -46,70 +50,74 @@ const Users = () => {
   };
 
   return (
-    <div className="min-h-screen bg-gray-100 flex flex-col justify-center items-center">
-      <div className="flex flex-col gap-4 items-center mb-4">
-        <div className="font-mono font-bold text-2xl">User List</div>
+    <div className="mx-[20px] flex flex-col justify-center">
+      <div className="gap-4 mb-4 flex">
+        <div className="font-Inter font-bold text-2xl">Users</div>
         <button
           onClick={handleClick}
-          className="rounded-md bg-blue-800 w-[100px] text-white font-mono font-bold hover:opacity-50"
+          className="p-3 rounded-md bg-blue-800 text-white font-Inter hover:opacity-50 flex w-auto"
         >
+          <Plus />
           Add User
         </button>
       </div>
-      <div className="relative w-full p-3">
-        <table className="w-full text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400 ">
-          <thead className="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
-            <tr>
-              <th className="px-6 py-3 border border-black">UserName</th>
-              <th className="px-6 py-3 border border-black">Age</th>
-              <th className="px-6 py-3 border border-black ">Address</th>
-              <th className="px-6 py-3 border border-black">Modify</th>
-            </tr>
-          </thead>
-          <tbody>
-            {user.map((data) => {
-              return (
-                <tr
-                  className="bg-white border-b dark:bg-gray-800 dark:border-gray-700"
-                  key={data.id}
-                >
-                  <th
-                    scope="row"
-                    className="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white"
+
+      <div className="min-h-screen flex flex-col items-center">
+        <div className="relative w-full">
+          <table className="w-full text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400 ">
+            <thead className="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
+              <tr>
+                <th className="px-6 py-3 border border-black">UserName</th>
+                <th className="px-6 py-3 border border-black">Age</th>
+                <th className="px-6 py-3 border border-black ">Address</th>
+                <th className="px-6 py-3 border border-black">Modify</th>
+              </tr>
+            </thead>
+            <tbody>
+              {user.map((data) => {
+                return (
+                  <tr
+                    className="bg-white border-b dark:bg-gray-800 dark:border-gray-700"
+                    key={data.id}
                   >
-                    {data.username}
-                  </th>
-                  <th
-                    scope="row"
-                    className="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white"
-                  >
-                    {data.age}
-                  </th>
-                  <th
-                    scope="row"
-                    className="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white"
-                  >
-                    {data.address}
-                  </th>
-                  <th className="flex gap-2">
-                    <button
-                      className="bg-red-500 text-white py-2 px-4 rounded-md mt-2"
-                      onClick={() => handleDelete(data.id)}
+                    <th
+                      scope="row"
+                      className="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white"
                     >
-                      Delete
-                    </button>
-                    <Link
-                      to={`/edituser/${data.id}`}
-                      className="bg-blue-500 text-white py-2 px-4 rounded-md mt-2"
+                      {data.username}
+                    </th>
+                    <th
+                      scope="row"
+                      className="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white"
                     >
-                      Edit
-                    </Link>
-                  </th>
-                </tr>
-              );
-            })}
-          </tbody>
-        </table>
+                      {data.age}
+                    </th>
+                    <th
+                      scope="row"
+                      className="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white"
+                    >
+                      {data.address}
+                    </th>
+                    <th className="flex gap-4 justify-center items-center">
+                      <Link
+                        to={`/edituser/${data.id}`}
+                        className="bg-blue-500 text-white py-2 px-2 rounded-md mt-2"
+                      >
+                        <Pen />
+                      </Link>
+                      <button
+                        className="bg-red-500 text-white py-2 px-2 rounded-md mt-2"
+                        onClick={() => handleDelete(data.id)}
+                      >
+                        <Trash />
+                      </button>
+                    </th>
+                  </tr>
+                );
+              })}
+            </tbody>
+          </table>
+        </div>
       </div>
     </div>
   );

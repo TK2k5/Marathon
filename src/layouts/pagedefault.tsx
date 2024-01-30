@@ -5,10 +5,10 @@ import Sidebar from "./sidebar";
 
 const PageDefault = () => {
   return (
-    <div className="flex flex-col min-h-screen">
+    <div className="flex flex-col min-h-screen gap-[20px]">
       <Header />
       <div className="flex ">
-        <div className="flex-none w-[230px] bg-gray-100 border border-r-black h-screen">
+        <div className="flex-none w-auto border border-r-black h-screen">
           <Sidebar />
         </div>
         <div className="flex-1">

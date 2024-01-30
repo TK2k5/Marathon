@@ -75,36 +75,57 @@ const EditUser = () => {
   };
 
   return (
-    <div className="h-screen bg-gray-100 flex justify-center items-center">
-      <div className="w-[500px] bg-white p-4 rounded-md flex flex-col gap-4 items-center">
-        <h1 className="text-xl font-bold">Edit User</h1>
+    <div className="flex items-center">
+      <div className="w-[500px] bg-white p-4 rounded-md flex flex-col gap-4">
+        <h1 className="text-2xl	font-Inter font-bold">Edit User</h1>
         <form
           onSubmit={(event) => handleOnSumit(event)}
-          className="flex flex-col gap-4 w-full"
+          className="flex flex-col gap-5 w-full"
         >
-          <h1>Username:</h1>
+          <h1 className="text-primarydark font-Inter font-medium">Name:</h1>
           <input
             className="outline-none border border-gray-200 rounded-lg p-3"
             type="text"
             value={user.username}
             onChange={(event) => handleNameChange(event)}
           />
-          <h1>Age:</h1>
+          <h1 className="text-primarydark font-Inter font-medium">Age:</h1>
           <input
             className="outline-none border border-gray-200 rounded-lg p-3"
             type="number"
             value={user.age}
             onChange={(event) => handleAgeChange(event)}
           />
-          <h1>Address:</h1>
+          <h1 className="text-primarydark font-Inter font-medium">Address:</h1>
           <input
             className="outline-none border border-gray-200 rounded-lg p-3"
             type="text"
             value={user.address}
             onChange={(event) => handleAddressChange(event)}
           />
-          <button className="text-white font-mono font-bold bg-red-600 rounded-xl p-2 w-[200px] m-auto hover:opacity-50">
-            Edit
+          <div>
+            <div>
+              <h1 className="text-primarydark font-Inter font-medium">
+                Status:
+              </h1>
+              <div className="flex gap-6 items-center">
+                <label className="flex justify-center gap-2">
+                  <input
+                    type="radio"
+                    className="accent-success w-6 h-6"
+                    defaultChecked
+                  />
+                  Active
+                </label>
+                <label className="flex justify-center gap-2">
+                  <input type="radio" className="accent-success w-6 h-6" />
+                  Inactive
+                </label>
+              </div>
+            </div>
+          </div>
+          <button className="text-white font-Inter font-bold bg-primary rounded-lg p-2 w-[200px] hover:opacity-50">
+            Edit User
           </button>
         </form>
       </div>
