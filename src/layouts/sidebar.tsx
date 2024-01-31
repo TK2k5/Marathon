@@ -1,4 +1,5 @@
 import Dashboard from "../components/icons/dashboard";
+import Excutiveicon from "../components/icons/excutiveicon";
 import { Link } from "react-router-dom";
 import User from "../components/icons/user";
 
@@ -24,6 +25,18 @@ const Sidebar = () => {
         >
           <User />
           <div>Admin</div>
+        </Link>
+      </div>
+      <div>
+        <div className="border-b border-gray-200 py-1 font-medium	text-base	font-Inter">
+          Executive Details
+        </div>
+        <Link
+          to="/products"
+          className="flex gap-1 mt-2 border-l-2 border-gray-500 p-[10px] text-xl font-Inter font-normal text-primarydark hover:bg-primary hover:rounded-md hover:text-white transition duration-200 ease-in-out"
+        >
+          <Excutiveicon />
+          <div>Executive</div>
         </Link>
       </div>
       <div>
