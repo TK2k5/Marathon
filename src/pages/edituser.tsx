@@ -1,12 +1,10 @@
+import { IAddUser, IUsers } from "../interfaces/users.interface";
+import { getUserById, updateUser } from "../apis/users.api";
 import { useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 
-interface IAddUser {
-  id: number;
-  username: string;
-  age: number;
-  address: string;
-}
+import { toast } from "react-toastify";
+
 const EditUser = () => {
   const router = useNavigate();
   const [user, setUser] = useState<Omit<IAddUser, "id">>({
@@ -18,39 +16,34 @@ const EditUser = () => {
   const { id: idParams } = useParams();
 
   useEffect(() => {
-    const fetchData = async () => {
-      try {
-        const response = await fetch(`http://localhost:3000/user/${idParams}`, {
-          method: "GET",
-        });
-        const users = await response.json();
-        setUser(users);
-      } catch (error) {
-        console.log("🚀 ~ fetchData ~ error:", error);
-      }
-    };
-    fetchData();
+    if (idParams) {
+      const fetchData = async () => {
+        try {
+          const response = await getUserById(idParams);
+          setUser(response.data);
+        } catch (error) {
+          console.log("🚀 ~ fetchData ~ error:", error);
+        }
+      };
+      fetchData();
+    }
   }, [idParams]);
 
   const handleOnSumit = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
     try {
-      const newUser: Omit<IAddUser, "id"> = {
+      const newUser: IUsers = {
+        id: String(idParams),
         username: user.username,
         age: user.age,
         address: user.address,
       };
-      const response = await fetch(`http://localhost:3000/user/${idParams}`, {
-        method: "PUT",
-        headers: {
-          "Content-Type": "application/json",
-          // 'Content-Type': 'application/x-www-form-urlencoded',
-        },
-        body: JSON.stringify(newUser),
-      });
-      await response.json();
+      const response = await updateUser(newUser);
+      console.log("🚀 ~ handleOnSumit ~  response:", response);
       router("/users");
+      toast.success("Success");
     } catch (error) {
+      toast.error("Fail");
       console.log("🚀 ~ handleOnSumit ~ error:", error);
     }
   };

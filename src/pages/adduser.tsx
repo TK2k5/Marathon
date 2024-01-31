@@ -1,12 +1,8 @@
+import { IAddUser } from "../interfaces/users.interface";
+import { createUser } from "../apis/users.api";
+import { toast } from "react-toastify";
 import { useNavigate } from "react-router-dom";
 import { useState } from "react";
-
-interface IAddUser {
-  id: number;
-  username: string;
-  age: number;
-  address: string;
-}
 
 const AddUser = () => {
   const router = useNavigate();
@@ -43,17 +39,11 @@ const AddUser = () => {
         age: user.age,
         address: user.address,
       };
-      const response = await fetch("http://localhost:3000/user", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-          // 'Content-Type': 'application/x-www-form-urlencoded',
-        },
-        body: JSON.stringify(newUser),
-      });
-      await response.json();
+      await createUser(newUser);
       router("/users");
+      toast.success("Success");
     } catch (error) {
+      toast.error("Fail");
       console.log("🚀 ~ handleOnSumit ~ error:", error);
     }
   };

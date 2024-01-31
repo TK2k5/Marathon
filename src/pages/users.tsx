@@ -1,16 +1,12 @@
 import { Link, useNavigate } from "react-router-dom";
+import { deleteUser, getAllUsers } from "../apis/users.api";
 import { useEffect, useState } from "react";
 
+import { IUsers } from "../interfaces/users.interface";
 import Pen from "../components/icons/pen";
 import Plus from "../components/icons/plus";
 import Trash from "../components/icons/trash";
-
-interface IUsers {
-  id: number;
-  username: string;
-  age: number;
-  address: string;
-}
+import { toast } from "react-toastify";
 
 const Users = () => {
   const router = useNavigate();
@@ -18,9 +14,8 @@ const Users = () => {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await fetch("http://localhost:3000/user");
-        const userlist = await response.json();
-        setUser(userlist);
+        const response = await getAllUsers();
+        setUser(response.data);
       } catch (error) {
         console.log("🚀 ~ fetchData ~ error:", error);
       }
@@ -28,23 +23,20 @@ const Users = () => {
     fetchData();
   }, []);
 
-  const userList: IUsers[] = [];
-  const [user, setUser] = useState<IUsers[]>(userList);
+  const [user, setUser] = useState<IUsers[]>([]);
 
   const handleClick = () => {
     router("/adduser");
   };
 
-  const handleDelete = async (idUser: number) => {
+  const handleDelete = async (idUser: number | string) => {
     try {
-      const response = await fetch(`http://localhost:3000/user/${idUser}`, {
-        method: "DELETE",
-      });
-      const users = await response.json();
-      console.log("🚀 ~ handleDelete ~ users:", users);
+      await deleteUser(idUser);
       const newUserList = user.filter((value) => value.id !== idUser);
       setUser(newUserList);
+      toast.success("Success");
     } catch (error) {
+      toast.error("Fail");
       console.log("🚀 ~ handleDelete ~ error:", error);
     }
   };
@@ -74,47 +66,49 @@ const Users = () => {
               </tr>
             </thead>
             <tbody>
-              {user.map((data) => {
-                return (
-                  <tr
-                    className="bg-white border-b dark:bg-gray-800 dark:border-gray-700"
-                    key={data.id}
-                  >
-                    <th
-                      scope="row"
-                      className="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white"
+              {user &&
+                user.length > 0 &&
+                user.map((data) => {
+                  return (
+                    <tr
+                      className="bg-white border-b dark:bg-gray-800 dark:border-gray-700"
+                      key={data.id}
                     >
-                      {data.username}
-                    </th>
-                    <th
-                      scope="row"
-                      className="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white"
-                    >
-                      {data.age}
-                    </th>
-                    <th
-                      scope="row"
-                      className="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white"
-                    >
-                      {data.address}
-                    </th>
-                    <th className="flex gap-4 justify-center items-center">
-                      <Link
-                        to={`/edituser/${data.id}`}
-                        className="bg-blue-500 text-white py-2 px-2 rounded-md mt-2"
+                      <th
+                        scope="row"
+                        className="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white"
                       >
-                        <Pen />
-                      </Link>
-                      <button
-                        className="bg-red-500 text-white py-2 px-2 rounded-md mt-2"
-                        onClick={() => handleDelete(data.id)}
+                        {data.username}
+                      </th>
+                      <th
+                        scope="row"
+                        className="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white"
                       >
-                        <Trash />
-                      </button>
-                    </th>
-                  </tr>
-                );
-              })}
+                        {data.age}
+                      </th>
+                      <th
+                        scope="row"
+                        className="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white"
+                      >
+                        {data.address}
+                      </th>
+                      <th className="flex gap-4 justify-center items-center">
+                        <Link
+                          to={`/edituser/${data.id}`}
+                          className="bg-blue-500 text-white py-2 px-2 rounded-md mt-2"
+                        >
+                          <Pen />
+                        </Link>
+                        <button
+                          className="bg-red-500 text-white py-2 px-2 rounded-md mt-2"
+                          onClick={() => handleDelete(data.id)}
+                        >
+                          <Trash />
+                        </button>
+                      </th>
+                    </tr>
+                  );
+                })}
             </tbody>
           </table>
         </div>
