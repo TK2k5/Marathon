@@ -54,13 +54,13 @@ const EditProduct = () => {
       name: (product.name = event.target.value),
     });
   };
-  const handlepriceChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+  const handlePriceChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     setproduct({
       ...product,
       price: (product.price = event.target.valueAsNumber),
     });
   };
-  const handledateChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+  const handleDateChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     setproduct({
       ...product,
       date: (product.date = event.target.value),
@@ -75,7 +75,7 @@ const EditProduct = () => {
           onSubmit={(event) => handleOnSumit(event)}
           className="flex flex-col gap-5 w-full"
         >
-          <h1 className="text-primarydark font-Inter font-medium">Name:</h1>
+          <h1 className="text-primarydark font-Inter font-medium">Product:</h1>
           <input
             className="outline-none border border-gray-200 rounded-lg p-3"
             type="text"
@@ -87,14 +87,14 @@ const EditProduct = () => {
             className="outline-none border border-gray-200 rounded-lg p-3"
             type="number"
             value={product.price}
-            onChange={(event) => handlepriceChange(event)}
+            onChange={(event) => handlePriceChange(event)}
           />
           <h1 className="text-primarydark font-Inter font-medium">Date:</h1>
           <input
             className="outline-none border border-gray-200 rounded-lg p-3"
             type="text"
             value={product.date}
-            onChange={(event) => handledateChange(event)}
+            onChange={(event) => handleDateChange(event)}
           />
           <div>
             <div>

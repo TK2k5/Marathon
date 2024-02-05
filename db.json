@@ -1,45 +1,17 @@
 {
   "products": [
     {
-      "id": "7",
-      "name": "Product 7",
-      "price": 705
-    },
-    {
       "id": "8",
       "name": "Product 8",
       "price": 800
-    },
-    {
-      "id": "9",
-      "name": "Product 9",
-      "price": 900
-    },
-    {
-      "id": "d037",
-      "name": " Váy",
-      "price": 1777,
-      "date": "20/2/2022"
-    },
-    {
-      "id": "1a90",
-      "name": " Giày",
-      "price": 18888,
-      "date": "28/12/2024"
     }
   ],
   "user": [
     {
-      "id": "435e",
-      "username": " Nguyễn Hoàn Triều",
-      "age": 18,
+      "id": "a2eb",
+      "username": " Nguyễn Hoàn Minh",
+      "age": 15,
       "address": "Hàm Liêm"
-    },
-    {
-      "id": "2015",
-      "username": " Người dùng 1",
-      "age": 17,
-      "address": "hádasd"
     }
   ]
 }

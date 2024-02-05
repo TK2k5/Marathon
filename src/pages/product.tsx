@@ -3,6 +3,7 @@ import { deleteProduct, getAllProducts } from "../apis/products.api";
 import { useEffect, useState } from "react";
 
 import { IProduct } from "../interfaces/products.interface";
+import ModalDelete from "../components/modaldelete";
 import Pen from "../components/icons/pen";
 import Plus from "../components/icons/plus";
 import Trash from "../components/icons/trash";
@@ -10,6 +11,10 @@ import { toast } from "react-toastify";
 
 const Products = () => {
   const router = useNavigate();
+  const [showModal, SetShowModal] = useState<boolean>(false);
+  const handleCloseModal = () => {
+    SetShowModal(false);
+  };
 
   useEffect(() => {
     const fetchData = async () => {
@@ -34,6 +39,8 @@ const Products = () => {
       await deleteProduct(idProduct);
       const newProductList = product.filter((value) => value.id !== idProduct);
       setProduct(newProductList);
+      SetShowModal(false);
+
       toast.success("Success");
     } catch (error) {
       toast.error("Fail");
@@ -101,11 +108,18 @@ const Products = () => {
                         </Link>
                         <button
                           className="bg-red-500 text-white py-2 px-2 rounded-md mt-2"
-                          onClick={() => handleDelete(data.id)}
+                          onClick={() => SetShowModal(true)}
                         >
                           <Trash />
                         </button>
                       </th>
+                      <ModalDelete
+                        visible={showModal}
+                        onClose={handleCloseModal}
+                        handleModalDelete={handleDelete}
+                        id={data.id}
+                        name="Product"
+                      />
                     </tr>
                   );
                 })}

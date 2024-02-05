@@ -3,13 +3,19 @@ import { deleteUser, getAllUsers } from "../apis/users.api";
 import { useEffect, useState } from "react";
 
 import { IUsers } from "../interfaces/users.interface";
+import ModalDelete from "../components/modaldelete";
 import Pen from "../components/icons/pen";
 import Plus from "../components/icons/plus";
 import Trash from "../components/icons/trash";
 import { toast } from "react-toastify";
 
 const Users = () => {
+  const [showModal, SetShowModal] = useState<boolean>(false);
   const router = useNavigate();
+
+  const handleCloseModal = () => {
+    SetShowModal(false);
+  };
 
   useEffect(() => {
     const fetchData = async () => {
@@ -34,6 +40,7 @@ const Users = () => {
       await deleteUser(idUser);
       const newUserList = user.filter((value) => value.id !== idUser);
       setUser(newUserList);
+      SetShowModal(false);
       toast.success("Success");
     } catch (error) {
       toast.error("Fail");
@@ -53,7 +60,6 @@ const Users = () => {
           Add User
         </button>
       </div>
-
       <div className="min-h-screen flex flex-col items-center">
         <div className="relative w-full">
           <table className="w-full text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400 ">
@@ -101,11 +107,17 @@ const Users = () => {
                         </Link>
                         <button
                           className="bg-red-500 text-white py-2 px-2 rounded-md mt-2"
-                          onClick={() => handleDelete(data.id)}
+                          onClick={() => SetShowModal(true)}
                         >
                           <Trash />
                         </button>
                       </th>
+                      <ModalDelete
+                        visible={showModal}
+                        onClose={handleCloseModal}
+                        handleModalDelete={handleDelete}
+                        id={data.id}
+                      />
                     </tr>
                   );
                 })}
@@ -113,6 +125,7 @@ const Users = () => {
           </table>
         </div>
       </div>
+      ;
     </div>
   );
 };

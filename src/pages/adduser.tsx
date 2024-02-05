@@ -17,6 +17,7 @@ const AddUser = () => {
       ...user,
       name: (user.name = event.target.value),
     });
+    console.log(event.target.name);
   };
   const handleAgeChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     setUser({
@@ -59,6 +60,7 @@ const AddUser = () => {
           <h1 className="text-primarydark font-Inter font-medium">Username:</h1>
           <input
             value={user.name}
+            name="name"
             className="outline-none border border-gray-200 rounded-lg p-3"
             type="text"
             onChange={(event) => handleNameChange(event)}
