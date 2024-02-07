@@ -2,16 +2,41 @@
   "products": [
     {
       "id": "8",
-      "name": "Product 8",
-      "price": 800
+      "name": "Product12313",
+      "price": "123123",
+      "date": "123213"
+    },
+    {
+      "id": "3581",
+      "name": " asdsad",
+      "price": "12313",
+      "date": "wqwqe"
+    },
+    {
+      "id": "fe10",
+      "name": " 12313",
+      "price": "0123213",
+      "date": " 12323"
     }
   ],
   "user": [
     {
-      "id": "a2eb",
-      "username": " Nguyễn Hoàn Minh",
-      "age": 15,
-      "address": "Hàm Liêm"
+      "id": "f057",
+      "username": "Người dùng 1",
+      "age": "17",
+      "address": " Hồ Chí Minh"
+    },
+    {
+      "id": "9dbc",
+      "username": " Người dùng 2",
+      "age": "18",
+      "address": "Hà Nội"
+    },
+    {
+      "id": "d4a5",
+      "username": " Người dùng 3",
+      "age": "18",
+      "address": "Đà Nẵng"
     }
   ]
 }

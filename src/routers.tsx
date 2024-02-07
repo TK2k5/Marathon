@@ -1,11 +1,11 @@
-import AddProduct from "./pages/addproduct";
-import AddUser from "./pages/adduser";
-import EditProduct from "./pages/editproduct";
-import EditUser from "./pages/edituser";
+import AddProduct from "./pages/products/addproduct";
+import AddUser from "./pages/users/adduser";
+import EditProduct from "./pages/products/editproduct";
+import EditUser from "./pages/users/edituser";
 import Login from "./pages/login";
 import PageDefault from "./layouts/pagedefault";
-import Products from "./pages/product";
-import Users from "./pages/users";
+import Products from "./pages/products/product";
+import Users from "./pages/users/users";
 import { createBrowserRouter } from "react-router-dom";
 
 export const router = createBrowserRouter([
