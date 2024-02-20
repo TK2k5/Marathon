@@ -1,0 +1,6 @@
+export { default as UserIcon } from './user-icon'
+export { default as Trash } from './trash'
+export { default as Plus } from './plus'
+export { default as ExcutiveIcon } from './excutiveicon'
+export { default as Dashboard } from './dashboard'
+export { default as Pen } from './pen.tsx'
