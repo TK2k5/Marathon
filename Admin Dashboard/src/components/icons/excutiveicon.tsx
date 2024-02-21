@@ -1,18 +1,24 @@
-export const ExcutiveIcon = () => {
+import { IconPros } from '@/types'
+import { clsxm } from '@/utils'
+
+export const ExcutiveIcon = ({ width, height, className }: IconPros) => {
   return (
-    <span>
-      <svg width='20' height='27' viewBox='0 0 20 27' fill='none' xmlns='http://www.w3.org/2000/svg'>
-        <path
-          d='M15.5477 6.17325C15.5477 9.47213 12.8736 12.1463 9.57462 12.1463C6.27565 12.1463 3.60156 9.47203 3.60156 6.17325C3.60156 2.87458 6.27565 0.200195 9.57462 0.200195C12.8736 0.200195 15.5477 2.87448 15.5477 6.17325Z'
-          fill='currentColor'
-        />
-        <path
-          d='M18.6312 19.342C18.2979 16.4805 16.1866 14.2302 13.4916 13.5912L10.8245 20.2866L10.241 15.4525H10.6299C10.8522 15.4525 11.0465 15.2579 11.0465 15.0359V13.7301C11.0465 13.5078 10.852 13.3135 10.6299 13.3135H8.51854C8.29626 13.3135 8.10189 13.508 8.10189 13.7301V15.0359C8.10189 15.2581 8.29646 15.4525 8.51854 15.4525H8.90747L8.32396 20.2866L5.65682 13.5912C2.96219 14.2301 0.850836 16.4804 0.517704 19.342L0.0177334 23.537C-0.148927 24.9261 0.878916 26.1762 2.268 26.2874C2.49028 26.3151 2.74026 26.3151 2.99027 26.343C7.62981 26.7042 12.2971 26.6763 16.9089 26.3153C18.298 26.2043 19.3258 24.954 19.1592 23.5649L18.6312 19.342Z'
-          fill='currentColor'
-        />
-      </svg>
-    </span>
+    <svg
+      width={width || 24}
+      height={height || 24}
+      xmlns='http://www.w3.org/2000/svg'
+      fill='none'
+      viewBox='0 0 24 24'
+      strokeWidth={1.5}
+      stroke='currentColor'
+      className={clsxm(className?.classNameSvg)}
+    >
+      <path
+        strokeLinecap='round'
+        strokeLinejoin='round'
+        className={clsxm(className?.classNamePath)}
+        d='M15.75 6a3.75 3.75 0 1 1-7.5 0 3.75 3.75 0 0 1 7.5 0ZM4.501 20.118a7.5 7.5 0 0 1 14.998 0A17.933 17.933 0 0 1 12 21.75c-2.676 0-5.216-.584-7.499-1.632Z'
+      />
+    </svg>
   )
 }
-
-export default ExcutiveIcon

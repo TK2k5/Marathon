@@ -1,5 +1,6 @@
 import { FormGroup, Input } from '@/components'
 
+import { Button } from '@/components/buttons'
 import Logo from '../../../public/logo.svg'
 
 const SigninPage = () => {
@@ -27,9 +28,9 @@ const SigninPage = () => {
                 <Input placeholder='Password' type='password' />
               </FormGroup>
 
-              <button className='w-full py-3 font-semibold rounded-md bg-red text-white max-w-[300px] mx-auto'>
+              <Button className='w-full py-3 font-semibold rounded-md bg-primary text-white max-w-[300px] mx-auto'>
                 Login
-              </button>
+              </Button>
             </form>
           </div>
         </div>

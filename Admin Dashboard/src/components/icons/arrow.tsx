@@ -1,22 +1,20 @@
 import { IconPros } from '@/types'
 import { clsxm } from '@/utils'
 
-export const Plus = ({ width, height, className }: IconPros) => {
+export const ArrowIcon = ({ width, height, className }: IconPros) => {
   return (
     <svg
       width={width || 24}
       height={height || 24}
       xmlns='http://www.w3.org/2000/svg'
-      fill='none'
-      viewBox='0 0 24 24'
-      strokeWidth={1.5}
-      stroke='currentColor'
+      viewBox='0 0 20 20'
+      fill='currentColor'
       className={clsxm(className?.classNameSvg)}
     >
       <path
-        strokeLinecap='round'
-        strokeLinejoin='round'
-        d='M12 4.5v15m7.5-7.5h-15'
+        fillRule='evenodd'
+        d='M5.22 8.22a.75.75 0 0 1 1.06 0L10 11.94l3.72-3.72a.75.75 0 1 1 1.06 1.06l-4.25 4.25a.75.75 0 0 1-1.06 0L5.22 9.28a.75.75 0 0 1 0-1.06Z'
+        clipRule='evenodd'
         className={clsxm(className?.classNamePath)}
       />
     </svg>
