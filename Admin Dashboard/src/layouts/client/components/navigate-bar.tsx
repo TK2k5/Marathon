@@ -16,10 +16,10 @@ interface INavigateBar {
   handleClick: (index: number) => void
 }
 
-export const NavigateBar = ({ icon, name, url, title, className, index, id, handleClick }: INavigateBar) => {
+export const NavigateBar = ({ icon, name, title, className, index, id, handleClick, url }: INavigateBar) => {
   return (
     <div className='pb-10'>
-      <h2 className={clsxm(`text-base font-medium`, className?.classNameTitle)}>{title}</h2>
+      <h2 className={clsxm(`text-base font-medium pb-3 border-b-2 mb-2`, className?.classNameTitle)}>{title}</h2>
 
       <Link
         to={url}

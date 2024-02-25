@@ -7,20 +7,27 @@ export default {
         primary: '#F60621',
         red: {
           l1: '#fa9e93',
-          l10: '#f25869',
-          DEFAULT: '#F60621'
+          DEFAULT: '#F60621',
+          d1: '#f00'
         },
-        blu: {
+        blue: {
           DEFAULT: '#28a745'
         },
         gray: {
           l10: '#023668',
           l1: '#eeeeee',
           l9: '#999999',
-          DEFAULT: '#212529'
+          l11: '#212592',
+          DEFAULT: '#212529',
+          d1: '#b2b2b2',
+          d2: '#5f5f5f'
         },
         yellow: {
           DEFAULT: '#ffc107'
+        },
+        black: {
+          l1: '#212529',
+          DEFAULT: '#000000'
         }
       }
     }
