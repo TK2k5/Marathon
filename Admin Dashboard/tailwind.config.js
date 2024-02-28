@@ -3,12 +3,16 @@ export default {
   content: ['./index.html', './src/**/*.{js,ts,jsx,tsx}'],
   theme: {
     extend: {
+      gridTemplateColumns: {
+        13: 'repeat(13, minmax(0, 1fr))'
+      },
       colors: {
         primary: '#F60621',
         red: {
           l1: '#fa9e93',
           DEFAULT: '#F60621',
-          d1: '#f00'
+          d1: '#f00',
+          d2: '#722900'
         },
         blue: {
           DEFAULT: '#28a745'

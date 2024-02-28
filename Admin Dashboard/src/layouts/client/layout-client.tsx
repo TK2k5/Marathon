@@ -22,7 +22,7 @@ const LayoutClient = () => {
       {/* header */}
       <HeaderLayout />
 
-      <div className='flex gap-5 pr-5'>
+      <div className='flex h-screen gap-5 pr-5'>
         <SidebarLayout />
         <div className='flex flex-col w-full gap-5 py-5 '>
           <div className='w-full p-3 border border-b rounded-md bg-gray-l1 border-gray-l9 border-b-gray-l9'>
