@@ -1,4 +1,4 @@
-import { AdminPage, DashboardPage, ExecutivePage, SigninPage } from '@/pages'
+import { AddUserPage, AdminPage, DashboardPage, ExecutivePage, SigninPage } from '@/pages'
 import { Navigate, createBrowserRouter } from 'react-router-dom'
 
 import { LayoutClient } from '@/layouts'
@@ -11,7 +11,8 @@ export const routers = createBrowserRouter([
       { path: '/', element: <Navigate to={'dashboard'} /> },
       { path: 'dashboard', element: <DashboardPage /> },
       { path: 'admin', element: <AdminPage /> },
-      { path: 'executive', element: <ExecutivePage /> }
+      { path: 'executive', element: <ExecutivePage /> },
+      { path: 'admin/add-user', element: <AddUserPage /> }
     ]
   },
   {

@@ -1,14 +1,14 @@
 import { clsxm } from '@/utils'
 
 interface ILabelProps {
-  id?: string
+  htmlFor?: string
   className?: string
   children: React.ReactNode
 }
 
-export const Label = ({ children, className, id }: ILabelProps) => {
+export const Label = ({ children, className, htmlFor }: ILabelProps) => {
   return (
-    <label htmlFor={id} className={clsxm(`text-sm font-semibold`, className)}>
+    <label htmlFor={htmlFor} className={clsxm(`text-xl text-primary font-medium`, className)}>
       {children}
     </label>
   )

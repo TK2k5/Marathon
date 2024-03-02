@@ -1,6 +1,5 @@
 import { Button, Pen, Plus, Status, Title, Trash } from '@/components'
 
-import React from 'react'
 import { clsxm } from '@/utils'
 
 const AdminPage = () => {
@@ -8,7 +7,7 @@ const AdminPage = () => {
     <div className='w-full h-full'>
       <div className='flex gap-8'>
         <Title title='Users' className='font-semibold text-2xl' />
-        <Button className='flex w-fit bg-gray-l10 text-white p-[10px] text-base gap-[5px]'>
+        <Button href='add-user' className='flex w-fit bg-gray-l10 text-white p-[10px] text-base gap-[5px]'>
           <Plus /> Add New
         </Button>
       </div>
@@ -32,7 +31,7 @@ const AdminPage = () => {
       </div>
       {Array.from({ length: 5 }).map((_, index) => (
         <div key={index} className='grid px-[3px] grid-cols-13 mt-[14px] gap-y-2.5 p-[3px] py-2.5 flex-shrink border-b'>
-          <div className={clsxm('col-span-1 text-center border-r')}>1</div>
+          <div className={clsxm('col-span-1 text-center border-r')}>{index + 1}</div>
           <div title='User1 asdfasdfkjlasdflasdkl' className={clsxm('col-span-2 text-left border-r truncate')}>
             User1
           </div>
