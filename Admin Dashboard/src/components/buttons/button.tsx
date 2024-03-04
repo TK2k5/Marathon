@@ -8,9 +8,10 @@ interface IButtonProps {
   variant?: EButtonVariant
   icon?: React.ReactNode
   href?: string
+  onClick?: () => void
 }
 
-export const Button = ({ children, className, variant, icon, href }: IButtonProps) => {
+export const Button = ({ children, className, variant, icon, href, onClick }: IButtonProps) => {
   if (href) {
     return (
       <Link
@@ -26,6 +27,7 @@ export const Button = ({ children, className, variant, icon, href }: IButtonProp
           { 'flex items-center justify-center': href },
           className
         )}
+        onClick={onClick && onClick}
       >
         {icon && icon} {children}
       </Link>
@@ -44,6 +46,7 @@ export const Button = ({ children, className, variant, icon, href }: IButtonProp
         { 'flex items-center gap-2 justify-center': icon },
         className
       )}
+      onClick={onClick && onClick}
     >
       {icon && icon} {children}
     </button>

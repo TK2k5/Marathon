@@ -1,8 +1,61 @@
 import { Button, Pen, Plus, Status, Title, Trash } from '@/components'
+import { deleteUser, getUsers } from '@/apis'
+import { useEffect, useState } from 'react'
 
+import { IUser } from '@/types'
+import Swal from 'sweetalert2'
 import { clsxm } from '@/utils'
+import { toast } from 'react-toastify'
 
 const AdminPage = () => {
+  const [users, setUsers] = useState<IUser[]>([])
+
+  useEffect(() => {
+    ;(async () => {
+      try {
+        const response = await getUsers()
+        if (response.status === 200) {
+          const data = response.data
+          setUsers(data)
+        }
+      } catch (error) {
+        toast.error('Get user failed')
+      }
+    })()
+  }, [])
+
+  const handleDelete = (id: number) => {
+    Swal.fire({
+      title: 'Confirm Delete',
+      text: 'Are you sure you want to delete Admin permanently. You can’t undo this action.!',
+      icon: 'warning',
+      showCancelButton: true,
+      confirmButtonColor: '#3085d6',
+      cancelButtonColor: '#d33',
+      confirmButtonText: 'DELETE!'
+    }).then((result) => {
+      if (result.isConfirmed) {
+        deleteUser(id)
+          .then(() => {
+            Swal.fire({
+              title: 'Deleted!',
+              text: 'Your file has been deleted.',
+              icon: 'success'
+            })
+            const newUsers = users.filter((user) => user.id !== id)
+            setUsers(newUsers)
+          })
+          .catch(() => {
+            Swal.fire({
+              title: 'Error!',
+              text: 'Delete user failed',
+              icon: 'error'
+            })
+          })
+      }
+    })
+  }
+
   return (
     <div className='w-full h-full'>
       <div className='flex gap-8'>
@@ -29,37 +82,52 @@ const AdminPage = () => {
           </div>
         ))}
       </div>
-      {Array.from({ length: 5 }).map((_, index) => (
-        <div key={index} className='grid px-[3px] grid-cols-13 mt-[14px] gap-y-2.5 p-[3px] py-2.5 flex-shrink border-b'>
-          <div className={clsxm('col-span-1 text-center border-r')}>{index + 1}</div>
-          <div title='User1 asdfasdfkjlasdflasdkl' className={clsxm('col-span-2 text-left border-r truncate')}>
-            User1
+
+      {users && users.length === 0 && <div className='mt-5 text-center'>No data</div>}
+
+      {users &&
+        users.length > 0 &&
+        users.map((user, index) => (
+          <div
+            key={user.id}
+            className='grid px-[3px] grid-cols-13 mt-[14px] gap-y-2.5 p-[3px] py-2.5 flex-shrink border-b'
+          >
+            <div className={clsxm('col-span-1 text-center border-r')}>{index + 1}</div>
+            <div title='User1 asdfasdfkjlasdflasdkl' className={clsxm('col-span-2 text-left border-r truncate')}>
+              {user.name}
+            </div>
+            <div className={clsxm('col-span-2 text-left border-r truncate')}>{user.email}</div>
+            <div className={clsxm('col-span-2 text-left border-r px-4')}>{user.mobileNumber}</div>
+            <div className={clsxm('col-span-1 text-center border-r flex justify-center')}>
+              <Status
+                className={clsxm(
+                  'border w-fit p-2.5 rounded-lg',
+                  { 'border-blue-l1 text-blue-l1': user.status === true }, // status
+                  { 'border-red text-red': user.status === false } // !status
+                )}
+                status={user.status ? 'Active' : 'InActive'}
+              />
+            </div>
+            <div className={clsxm('col-span-2 text-center border-r')}>{user.created_at}</div>
+            <div className={clsxm('col-span-2 text-center border-r')}>{user.updated_at}</div>
+            <div className={clsxm('col-span-1 text-center flex gap-2 justify-center items-center ml-1')}>
+              <Button>
+                <Pen
+                  width={40}
+                  height={40}
+                  className={{ classNameSvg: 'border-4 border-gray-l9 p-[5px] rounded-md text-red-d2' }}
+                />
+              </Button>
+              <Button onClick={() => handleDelete(user.id)}>
+                <Trash
+                  width={40}
+                  height={40}
+                  className={{ classNameSvg: 'border-4 border-gray-l9 p-[5px] rounded-md text-primary' }}
+                />
+              </Button>
+            </div>
           </div>
-          <div className={clsxm('col-span-2 text-left border-r')}>user1@gmail.com</div>
-          <div className={clsxm('col-span-2 text-left border-r')}>9876543210</div>
-          <div className={clsxm('col-span-1 text-center border-r')}>
-            <Status status='Active' className='px-2 py-1 border-2 border-blue rounded-md text-blue mx-1' />
-          </div>
-          <div className={clsxm('col-span-2 text-center border-r')}>
-            2023-03-12 <br /> 12:24:22 AM
-          </div>
-          <div className={clsxm('col-span-2 text-center border-r')}>
-            2023-03-12 <br /> 12:24:22 AM
-          </div>
-          <div className={clsxm('col-span-1 text-center flex gap-2 justify-center items-center ml-1')}>
-            <Pen
-              width={40}
-              height={40}
-              className={{ classNameSvg: 'border-4 border-gray-l9 p-[5px] rounded-md text-red-d2' }}
-            />
-            <Trash
-              width={40}
-              height={40}
-              className={{ classNameSvg: 'border-4 border-gray-l9 p-[5px] rounded-md text-primary' }}
-            />
-          </div>
-        </div>
-      ))}
+        ))}
     </div>
   )
 }

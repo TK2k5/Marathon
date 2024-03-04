@@ -1,21 +1,27 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
+
 import * as yup from 'yup'
 
-import { Button, FormGroup, Label, Status, Title } from '@/components'
+import { Button, FormGroup, Input, Label, Status, Title } from '@/components'
 
-import axios from 'axios'
+import { IUserCreate } from '@/types'
 import { clsxm } from '@/utils'
+import { createUser } from '@/apis'
 import { initialData } from './init'
+import { toast } from 'react-toastify'
 import { useForm } from 'react-hook-form'
 import { useNavigate } from 'react-router-dom'
 import { useState } from 'react'
 import { yupResolver } from '@hookform/resolvers/yup'
 
+// import axios from 'axios'
+
 const schema = yup
   .object({
     name: yup.string().required('Name is required'),
     mobileNumber: yup.string().required('Mobile number is required'),
-    email: yup.string().required('Email is required'),
-    Password: yup.string().required('Password is required')
+    email: yup.string().email().required('Email is required'),
+    password: yup.string().required('Password is required')
   })
   .required()
 
@@ -28,23 +34,28 @@ const AddUserPage = () => {
   }
 
   const {
-    register,
+    // register,
     handleSubmit,
+    control,
     formState: { errors }
   } = useForm({
     resolver: yupResolver(schema)
   })
 
-  const onSubmit = async (data: any) => {
+  const onSubmit = async (data: IUserCreate) => {
     try {
       const userInfo = {
         ...data,
-        status: status
+        status: status,
+        created_at: new Date(),
+        updated_at: new Date()
       }
-      const response = await axios.post(`http://localhost:4200/user`, userInfo)
+      await createUser(userInfo)
       navigate('/admin')
-      console.log('🚀 ~ onSubmit ~ response:', response)
+      toast.success('Add user successfully!')
     } catch (error) {
+      toast.error('Add user failed')
+
       console.log('🚀 ~ onSubmit ~ error:', error)
     }
   }
@@ -55,70 +66,14 @@ const AddUserPage = () => {
 
       <div className='mt-[30px] pb-10'>
         <form className='w-[450px] flex flex-col gap-[30px]' autoComplete='off' onSubmit={handleSubmit(onSubmit)}>
-          {/* {initialData.map((data) => (
+          {initialData.map((data) => (
             <FormGroup key={data.id}>
               <Label className='capitalize'>{data.title}:</Label>
-              <Input
-                className='placeholder:capitalize'
-                {...register(data.id)}
-                placeholder={data.placeholder}
-                id={data.id}
-              />
-              {errors.name && <p className='text-red'>{errors.name.message}</p>}
+              <Input className='placeholder:capitalize' placeholder={data.placeholder} id={data.id} control={control} />
+              {(errors as any)[data.id] && <p className='text-red'>{(errors as any)[data.id].message}</p>}
             </FormGroup>
-          ))} */}
-          <FormGroup>
-            <Label className='capitalize' htmlFor='Password'>
-              Name:
-            </Label>
-            <input
-              type='text'
-              placeholder='name'
-              id='name'
-              className='p-2 border rounded-md outline-none border-gray-l2 focus:border-gray-100'
-              {...register('name')}
-            />
-            {errors.name && <p className='text-red'>{errors.name.message}</p>}
-          </FormGroup>
-          <FormGroup>
-            <Label className='capitalize' htmlFor='Password'>
-              Mobile Number:
-            </Label>
-            <input
-              type='text'
-              placeholder='Mobile Number'
-              id='mobileNumber'
-              className='p-2 border rounded-md outline-none border-gray-l2 focus:border-gray-100'
-              {...register('mobileNumber')}
-            />
-            {errors.mobileNumber && <p className='text-red'>{errors.mobileNumber.message}</p>}
-          </FormGroup>
-          <FormGroup>
-            <Label className='capitalize' htmlFor='Password'>
-              Email:
-            </Label>
-            <input
-              type='email'
-              placeholder='Email'
-              id='email'
-              className='p-2 border rounded-md outline-none border-gray-l2 focus:border-gray-100'
-              {...register('email')}
-            />
-            {errors.email && <p className='text-red'>{errors.email.message}</p>}
-          </FormGroup>
-          <FormGroup>
-            <Label className='capitalize' htmlFor='Password'>
-              Password:
-            </Label>
-            <input
-              type='password'
-              placeholder='Password'
-              id='Password'
-              className='p-2 border rounded-md outline-none border-gray-l2 focus:border-gray-100'
-              {...register('Password')}
-            />
-            {errors.Password && <p className='text-red'>{errors.Password.message}</p>}
-          </FormGroup>
+          ))}
+
           <FormGroup>
             <Label className='capitalize' htmlFor='Active'>
               Status:
