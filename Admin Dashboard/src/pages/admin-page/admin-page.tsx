@@ -10,6 +10,14 @@ import { toast } from 'react-toastify'
 const AdminPage = () => {
   const [users, setUsers] = useState<IUser[]>([])
 
+  const usersPerPage = 5
+  const [currentPage, setCurrentPage] = useState<number>(1)
+  const indexOfLastUser = currentPage * usersPerPage
+  const indexOfFirstUser = indexOfLastUser - usersPerPage
+  const currentUsers = users.slice(indexOfFirstUser, indexOfLastUser)
+
+  const totalPage = Math.ceil(users.length / usersPerPage)
+
   useEffect(() => {
     ;(async () => {
       try {
@@ -82,17 +90,15 @@ const AdminPage = () => {
           </div>
         ))}
       </div>
-
       {users && users.length === 0 && <div className='mt-5 text-center'>No data</div>}
-
-      {users &&
-        users.length > 0 &&
-        users.map((user, index) => (
+      {currentUsers &&
+        currentUsers.length > 0 &&
+        currentUsers.map((user) => (
           <div
             key={user.id}
             className='grid px-[3px] grid-cols-13 mt-[14px] gap-y-2.5 p-[3px] py-2.5 flex-shrink border-b'
           >
-            <div className={clsxm('col-span-1 text-center border-r')}>{index + 1}</div>
+            <div className={clsxm('col-span-1 text-center border-r')}>{user.id}</div>
             <div title='User1 asdfasdfkjlasdflasdkl' className={clsxm('col-span-2 text-left border-r truncate')}>
               {user.name}
             </div>
@@ -101,7 +107,7 @@ const AdminPage = () => {
             <div className={clsxm('col-span-1 text-center border-r flex justify-center')}>
               <Status
                 className={clsxm(
-                  'border w-fit p-2.5 rounded-lg',
+                  'border w-fit p-2.5 rounded-lg flex justify-center items-center',
                   { 'border-blue-l1 text-blue-l1': user.status === true }, // status
                   { 'border-red text-red': user.status === false } // !status
                 )}
@@ -128,6 +134,18 @@ const AdminPage = () => {
             </div>
           </div>
         ))}
+      {/* pagination */}
+      <div className='flex items-center justify-center mt-5'>
+        {Array.from({ length: totalPage }).map((_, index) => (
+          <Button
+            className={clsxm('py-2.5 px-5 mx-2 w-fit', { 'bg-gray-l10 text-white': index + 1 === currentPage })}
+            key={index}
+            onClick={() => setCurrentPage(index + 1)}
+          >
+            {index + 1}
+          </Button>
+        ))}
+      </div>
     </div>
   )
 }

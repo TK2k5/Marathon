@@ -1,14 +1,6 @@
 {
   "user": [
     {
-      "id": "2fcf",
-      "name": "Nguy",
-      "mobileNumber": "123",
-      "email": "123@gmail.com",
-      "Password": "123",
-      "status": true
-    },
-    {
       "id": "33a6",
       "name": "1231",
       "mobileNumber": "123",
@@ -39,6 +31,26 @@
       "email": "123@gmail.com",
       "password": "1234",
       "status": true
+    },
+    {
+      "id": "fbb3",
+      "name": "Bửu",
+      "mobileNumber": "123214124124",
+      "email": "123123o123oi@gmail.com",
+      "password": "1231233123",
+      "status": false,
+      "created_at": "2024-03-10T03:22:33.929Z",
+      "updated_at": "2024-03-10T03:22:33.929Z"
+    },
+    {
+      "id": "da24",
+      "name": "BỬu",
+      "mobileNumber": "123123123",
+      "email": "hh@gmail.com",
+      "password": "12321",
+      "status": true,
+      "created_at": "2024-03-10T03:24:17.784Z",
+      "updated_at": "2024-03-10T03:24:17.784Z"
     }
   ]
 }
