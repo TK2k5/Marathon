@@ -117,7 +117,7 @@ const AdminPage = () => {
             <div className={clsxm('col-span-2 text-center border-r')}>{user.created_at}</div>
             <div className={clsxm('col-span-2 text-center border-r')}>{user.updated_at}</div>
             <div className={clsxm('col-span-1 text-center flex gap-2 justify-center items-center ml-1')}>
-              <Button>
+              <Button href={`/admin/edit/${user.id}`}>
                 <Pen
                   width={40}
                   height={40}
