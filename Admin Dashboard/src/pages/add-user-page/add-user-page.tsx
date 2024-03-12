@@ -1,65 +1,15 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 
-import * as yup from 'yup'
-
 import { Button, FormGroup, Input, Label, Status, Title } from '@/components'
 
-import { IUserCreate } from '@/types'
 import { clsxm } from '@/utils'
-import { createUser } from '@/apis'
 import { initialData } from './init'
-import { toast } from 'react-toastify'
-import { useForm } from 'react-hook-form'
-import { useNavigate } from 'react-router-dom'
-import { useState } from 'react'
-import { yupResolver } from '@hookform/resolvers/yup'
+import { useUserForm } from '@/hooks'
 
 // import axios from 'axios'
 
-const schema = yup
-  .object({
-    name: yup.string().required('Name is required'),
-    mobileNumber: yup.string().required('Mobile number is required'),
-    email: yup.string().email().required('Email is required'),
-    password: yup.string().required('Password is required')
-  })
-  .required()
-
 const AddUserPage = () => {
-  const navigate = useNavigate()
-  const [status, setStatus] = useState<boolean>(true)
-
-  const handleChangeStatus = (event: React.ChangeEvent<HTMLInputElement>) => {
-    setStatus(event.target.id === 'Active')
-  }
-
-  const {
-    // register,
-    handleSubmit,
-    control,
-    formState: { errors }
-  } = useForm({
-    resolver: yupResolver(schema)
-  })
-
-  const onSubmit = async (data: IUserCreate) => {
-    try {
-      const userInfo = {
-        ...data,
-        status: status,
-        created_at: new Date(),
-        updated_at: new Date()
-      }
-      await createUser(userInfo)
-      navigate('/admin')
-      toast.success('Add user successfully!')
-    } catch (error) {
-      toast.error('Add user failed')
-
-      console.log('🚀 ~ onSubmit ~ error:', error)
-    }
-  }
-
+  const { handleChangeStatus, control, errors, handleSubmit, onSubmit, register, status } = useUserForm()
   return (
     <div className='min-h-screen'>
       <Title title='Add New User' />
@@ -73,7 +23,19 @@ const AddUserPage = () => {
               {(errors as any)[data.id] && <p className='text-red'>{(errors as any)[data.id].message}</p>}
             </FormGroup>
           ))}
-
+          <FormGroup>
+            <Label className='capitalize' htmlFor='Password'>
+              Password:
+            </Label>
+            <input
+              type='password'
+              placeholder='Password'
+              id='Password'
+              className='p-2 border rounded-md outline-none border-gray-l2 focus:border-gray-100'
+              {...register('Password')}
+            />
+            {errors.Password && <p className='text-red'>{errors.Password.message}</p>}
+          </FormGroup>
           <FormGroup>
             <Label className='capitalize' htmlFor='Active'>
               Status:

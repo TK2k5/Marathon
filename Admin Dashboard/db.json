@@ -2,20 +2,21 @@
   "user": [
     {
       "name": "Bửu",
-      "mobileNumber": "123214124124",
+      "mobileNumber": "1232141241241233",
       "email": "123123o123oi@gmail.com",
-      "Password": "21313123",
-      "status": false,
-      "updated_at": "2024-03-10T07:42:26.569Z",
+      "Password": "HAHAHAHAHA",
+      "status": true,
+      "updated_at": "2024-03-12T09:09:31.443Z",
       "id": "123"
     },
     {
-      "name": "BỬu",
+      "name": "BỬu13",
       "mobileNumber": "123123123",
       "email": "hh@gmail.com",
       "Password": "2132",
       "status": true,
-      "updated_at": "2024-03-10T07:43:40.227Z",
+      "created_at": "2024-03-12T09:18:00.584Z",
+      "updated_at": "2024-03-12T09:18:00.584Z",
       "id": "da24"
     },
     {
@@ -26,6 +27,25 @@
       "status": true,
       "updated_at": "2024-03-10T07:43:44.785Z",
       "id": "9029"
+    },
+    {
+      "name": "Nguyễn Hoàn Triều",
+      "mobileNumber": "0947382101",
+      "email": "nhtrieu2k5@gmail.com",
+      "Password": "hahahaa",
+      "status": false,
+      "updated_at": "2024-03-12T09:08:30.707Z",
+      "id": "5ee2"
+    },
+    {
+      "name": "Ki",
+      "mobileNumber": "123213123",
+      "email": "asda@gmail.con",
+      "Password": "121232312",
+      "status": true,
+      "created_at": "2024-03-12T09:18:04.984Z",
+      "updated_at": "2024-03-12T09:18:04.984Z",
+      "id": "14f4"
     }
   ]
 }

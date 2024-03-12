@@ -1,81 +1,10 @@
-/* eslint-disable @typescript-eslint/no-explicit-any */
-/* eslint-disable react-hooks/exhaustive-deps */
-
-import * as yup from 'yup'
-
 import { Button, FormGroup, Label, Status, Title } from '@/components'
-import { editUser, getOneUser } from '@/apis'
-import { useEffect, useState } from 'react'
-import { useNavigate, useParams } from 'react-router-dom'
 
-import { IUser } from '@/types'
 import { clsxm } from '@/utils'
-import { toast } from 'react-toastify'
-import { useForm } from 'react-hook-form'
-import { yupResolver } from '@hookform/resolvers/yup'
-
-const schema = yup
-  .object({
-    name: yup.string().required('Name is required'),
-    mobileNumber: yup.string().required('Mobile number is required'),
-    email: yup.string().email('Không đúng định dạng email').required('Email is required'),
-    Password: yup.string().required('Password is required')
-  })
-  .required()
+import { useUserForm } from '@/hooks'
 
 const EditUserPage = () => {
-  const { id } = useParams()
-  const [userInfo, setUserInfo] = useState<IUser | null>(null)
-  const [status, setStatus] = useState<boolean>(true)
-  const navigate = useNavigate()
-
-  const {
-    register,
-    handleSubmit,
-    setValue,
-    formState: { errors }
-  } = useForm({
-    resolver: yupResolver(schema)
-  })
-
-  useEffect(() => {
-    const fetchData = async () => {
-      try {
-        if (!id) return
-        const response = await getOneUser(String(id))
-        setUserInfo(response.data)
-        setStatus(response.data.status)
-
-        // field data vào form
-        setValue('name', response.data.name)
-        setValue('mobileNumber', response.data.mobileNumber)
-        setValue('email', response.data.email)
-        setValue('Password', response.data.Password)
-      } catch (error) {
-        toast.error('Get user failed')
-      }
-    }
-    fetchData()
-  }, [id])
-
-  const onSubmit = async (data: any) => {
-    try {
-      const userEdit = {
-        ...data,
-        status: status,
-        updated_at: new Date()
-      }
-      await editUser(String(id), userEdit)
-      toast.success('Edit user successfully')
-      navigate('/admin')
-    } catch (error) {
-      toast.error('Edit user failed')
-    }
-  }
-
-  const handleChangeStatus = (event: React.ChangeEvent<HTMLInputElement>) => {
-    setStatus(event.target.id === 'Active') // true or false
-  }
+  const { register, handleChangeStatus, handleSubmit, onSubmit, status, userInfo, errors } = useUserForm()
 
   return (
     <div className='min-h-screen'>
@@ -83,18 +12,6 @@ const EditUserPage = () => {
 
       <div className='mt-[30px] pb-10'>
         <form className='w-[450px] flex flex-col gap-[30px]' autoComplete='off' onSubmit={handleSubmit(onSubmit)}>
-          {/* {initialData.map((data) => (
-            <FormGroup key={data.id}>
-              <Label className='capitalize'>{data.title}:</Label>
-              <Input
-                className='placeholder:capitalize'
-                control={control}
-                id={data.id}
-                placeholder={data.placeholder}
-                defaultValue={userInfo?.name}
-              />
-            </FormGroup>
-          ))} */}
           <FormGroup>
             <Label className='capitalize' htmlFor='Name'>
               Name:
@@ -193,7 +110,7 @@ const EditUserPage = () => {
             status={status ? 'Active' : 'InActive'}
           />
 
-          <Button className='text-white bg-red w-full max-w-[200px]'>Edit User</Button>
+          <Button className='text-white bg-red w-full max-w-[200px]'>Add User</Button>
         </form>
       </div>
     </div>

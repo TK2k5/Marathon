@@ -13,10 +13,5 @@ export const initialData = [
     id: 'email',
     title: 'email',
     placeholder: 'email'
-  },
-  {
-    id: 'password',
-    title: 'Password',
-    placeholder: 'password'
   }
 ]

@@ -20,7 +20,6 @@ export const Input = ({
   control,
   defaultValue: defaultValueProp
 }: InputProps) => {
-  console.log('🚀 ~ defaultValueProp:', defaultValueProp)
   const { field } = useController({
     name: id || '',
     control,
