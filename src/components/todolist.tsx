@@ -72,7 +72,7 @@ export const TodoList = () => {
         );
       })}
       <div className="flex justify-center items-center">
-        <p className="grow">You have 4 pending task</p>
+        <p className="grow">You have {arrayData.length} pending task</p>
         <button className="bg-violet-400 px-3 py-3 text-white">
           Clear All
         </button>
